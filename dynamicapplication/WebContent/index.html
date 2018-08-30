@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<body>
+	<div ng-controller="ctrl">
+		<h1>{{sub}}</h1>
+		<h1>{{getsub()}}</h1>
+		<h1>{{my_arry[0]}}</h1>	
+	</div>
+	
+	
+	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+	
+	<script type="text/javascript">
+	var app= angular.module("myapp",[]);
+	
+	app.controller("ctrl",function($scope){
+		$scope.sub="angularJs";
+		$scope.getsub =function(){
+			return $scope.sub;		
+		};
+		$scope.my_arry=[$scope.getsub()];
+		
+	});
+	</script>
+	</body>
+</html>

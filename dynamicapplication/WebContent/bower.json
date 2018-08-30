@@ -1,0 +1,6 @@
+{
+	"name":"dynamicapplication",
+	"dependencies":{
+		"angular":"latest"
+	}
+}
