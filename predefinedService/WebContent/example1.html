@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="predefinedctrl">
+<table border="2"
+	cellpadding="10px"
+	cellspacing="10px"
+	align="center"
+	style="font-size:20px">
+	<thead style="background-color:gray">
+		<tr>
+			<th>Name</th>
+			<th>Captial</th>
+			<th>Code</th>
+			<th>Flag</th>		
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="x in result">
+			<td>{{x.name}}</td>
+			<td>{{x.capital}}</td>
+			<td>{{x.currencies[0].code}}</td>
+			<td><img width="100px" height="50px" src="{{x.flag}}"></td>
+		</tr>
+	</tbody>
+</table>
+
+<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+<script>
+var app=angular.module("app",[]);
+
+app.service("countriesService",function($http){
+	this.getcountries=function(){
+		return $http.get("https://restcountries.eu/rest/v2/all").then(function(posRes){return posRes.data;},
+												function(errRes){return errRes;});
+	};
+});
+
+app.controller("predefinedctrl",function($scope,countriesService){
+	countriesService.getcountries().then(function(res){
+		$scope.result=res;
+	});
+});
+</script>
+</html>
