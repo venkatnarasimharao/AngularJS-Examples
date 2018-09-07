@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="customerctrl">
+<h1>
+	<ol ng-repeat="x in result">
+		<li>Name: {{x.Name}}</li> 
+		<li>City: {{x.City}}</li>
+		<li> Country: {{x.Country}}</li>
+	</ol>
+</h1>
+<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+<script type="text/javascript">
+var app=angular.module("app",[]);
+
+app.service("CustomService",function($http){
+	this.getCustomers=function(){
+	return	$http.get("https://www.w3schools.com/angular/customers.php")
+			.then(function (posRes){return posRes.data.records;},
+					function (errRes){return errRes;})
+		};
+	});
+		
+app.controller("customerctrl",function($scope,CustomService){
+	CustomService.getCustomers().then(function(res){
+		$scope.result=res;
+	});
+});
+</script>
+</html>
