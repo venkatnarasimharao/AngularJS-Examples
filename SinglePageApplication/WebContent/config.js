@@ -1,0 +1,18 @@
+app.config(function($routeProvider){
+	$routeProvider.when("/page_gff/:param1/:param2/:param3",{
+		templateUrl:"templates/page_one.html",
+		controller:"ctrl_one"
+	})
+	.when("/page_hff/:param1/:param2",{
+		templateUrl:"templates/page_two.html",
+		controller:"page_two"
+	})
+	.when("/page_thr",{
+		templateUrl:"templates/page_three.html",
+		controller:"page_three"
+	})
+	.otherwise("/page_gff/:param1/:param2/:param3",{
+		templateUrl:"templates/page_one.html",
+		controller:"ctrl_one"
+	})
+});
