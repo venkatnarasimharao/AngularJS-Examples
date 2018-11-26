@@ -1,0 +1,6 @@
+{
+"name":"timeinterval",
+"dependencies":{
+"angular":"latest"
+}
+}

@@ -1,0 +1,25 @@
+<html ng-app="myApp">
+<div ng-controller="ctrl_new">
+<h1>{{var_one}}</h1>
+<h1>{{var_two}}</h1>
+<h1>{{var_three}}</h1>
+</div>
+<script src="bower_components/angular/angular.min.js"></script>
+<script>
+var app=angular.module("myApp",[]);
+
+app.controller("ctrl_new",function($scope,$timeout,$interval,$location){
+		$scope.var_one="fetching data from server...!";
+		$timeout(fun_one,5000);
+		function fun_one(){
+			$scope.var_one="sucess.......!";
+		};
+		$scope.var_two=new Date().toLocaleTimeString();
+		$interval(fun_two,1000);
+		function fun_two(){
+			$scope.var_two=new Date().toLocaleTimeString();
+		};
+		$scope.var_three=$location.absUrl();
+});
+</script>
+</html>
