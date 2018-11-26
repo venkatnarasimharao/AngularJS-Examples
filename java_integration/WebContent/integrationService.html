@@ -1,0 +1,23 @@
+<html ng-app="MyApp">
+
+<h1 ng-controller="javaCtrl">{{result}}</h1>
+
+<script src="bower_components/angular/angular.min.js"></script>
+<script>
+var app=angular.module("MyApp",[]);
+
+app.service("javaservice",function($http){
+	this.getcountries=function(){
+		return $http.get("http://localhost:8080/NitJson/rest/college/search")
+		.then(function(posRes)
+				{return posRes;},
+			 function(errRes){return errRes;});
+	};
+});
+app.controller("javaCtrl",function($scope,javaservice){
+	javaservice.getcountries().then(function(res){
+		$scope.result=res;
+	});
+});
+</script>
+</html>

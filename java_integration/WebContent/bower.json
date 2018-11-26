@@ -1,0 +1,6 @@
+{
+"name":"javaintegration",
+"dependencies":{
+"angular":"latest"
+}
+}
