@@ -1,0 +1,6 @@
+{
+"name":"phpint",
+"dependencies":{
+"angular":"latest"
+}
+}
