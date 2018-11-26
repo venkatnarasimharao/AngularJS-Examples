@@ -1,0 +1,54 @@
+<html ng-app="myApp">
+<div ng-controller="java_ctrl">
+<h1>{{var_one}}</h1>
+<h1>{{var_two}}</h1>
+<h1>{{var_three}}</h1>
+</div>
+<script src="bower_components/angular/angular.min.js"></script>
+<script type="text/javascript">
+var app=angular.module("myApp",[]);
+
+app.service("javaService",function($http,$q){
+	var def_one=$q.defer();
+	this.getjava=function(){
+		return $http.get("http://localhost:8080/NitJson/rest/college/search").then(function(posRes){
+			def_one.resolve(posRes);
+			return def_one.promise;
+			},
+			function(errRes){
+				def_one.reject(errRes);
+				return def_one.promise;
+			});
+	};
+	 var def_two=$q.defer();
+	this.getphp=function(){
+		return $http.get("https://voliveafrica.com/webservices/get_all_users.php").then(function(posRes){
+			def_two.resolve(posRes);
+			return def_two.promise;
+		},
+		function(errRes){
+			def_two.reject(errRes);
+			return def_two.promise;
+		});
+	}; 
+	var def_three=$q.defer();
+	this.getcountries=function(){
+		return $http.get("http://restcountries.eu/rest/v2/all").then(function(posRes){
+			def_three.resolve(posRes);
+			return def_three.promise;
+		},
+		function(errRes){
+			def_three.reject(errRes);
+			return def_three.promise;
+		});
+	};
+});
+app.controller("java_ctrl",function($scope,javaService,$q){
+	$q.all([javaService.getjava(),javaService.getphp(),javaService.getcountries()]).then(function(res){
+			$scope.var_one=res[0];
+			$scope.var_two=res[1];
+			$scope.var_three=res[2];
+		});
+});
+</script>
+</html>

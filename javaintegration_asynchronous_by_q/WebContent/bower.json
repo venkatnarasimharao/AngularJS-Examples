@@ -1,0 +1,6 @@
+{
+"name":"asynchronous",
+"dependencies":{
+"angular":"latest"
+}
+}
