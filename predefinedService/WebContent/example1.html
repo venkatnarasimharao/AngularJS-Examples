@@ -33,7 +33,7 @@ app.service("countriesService",function($http){
 												function(errRes){return errRes;});
 	};
 });
-
+ /* then is used to catch the exception  */
 app.controller("predefinedctrl",function($scope,countriesService){
 	countriesService.getcountries().then(function(res){
 		$scope.result=res;

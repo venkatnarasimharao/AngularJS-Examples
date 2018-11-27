@@ -1,0 +1,6 @@
+{
+"name":"postreq",
+"dependencies":{
+"angular":"latest"
+}
+}

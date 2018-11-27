@@ -1,0 +1,21 @@
+<html ng-app="myapp" ng-controller="ctrl_one">
+
+<h1>{{result}}</h1>
+
+<script src="bower_components/angular/angular.min.js"></script>
+<script>
+var app=angular.module("myapp",[]);
+
+app.service("countriesService",function(){
+	this.getcountries=function($http){
+		return $http.get("http://restcountries.eu/rest/v2/all").then(function(posRes){return posRes.data;},
+										function(errRes){return errRes;});
+	};
+});
+app.controller("ctrl_one",function($scope,$http,countriesService){
+	countriesService.getcountries($http).then(function(res){
+		$scope.result=res;
+	});
+});
+</script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="integrationController">
+<h1 style="color:red;" ng-cloak>{{result_one}}</h1>
+<h2 style="color:green;" ng-cloak>{{result_two}}</h2>
+<h3 style="color:pink;" ng-cloak>{{result_three}}</h3>
+<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+<script>
+var app=angular.module("app",[]);
+app.service("integrationService",function($http,$q){
+	var deffered_one=$q.defer();
+	this.getjavaData=function(){
+		return $http.get("http://localhost:8082/nitjson/course/course1").then(function(posRes){
+			deffered_one.resolve(posRes);
+			return deffered_one.promise;
+		},
+		function(errRes){
+			deffered_one.reject(errRes);
+			return deffered_one.promise;
+		});
+	};
+	var deffered_two=$q.defer();
+	this.getDotnetData=function(){
+		return $http.get("http://localhost:14741/api/home").then(function(posRes){
+			deffered_two.resolve(posRes);
+			return deffered_two.promise;
+		},
+		function(errRes){
+			deffered_two.reject(errRes);
+			return deffered_two.promise;
+		});
+	};
+	var deffered_three=$q.defer();
+	this.getphopData=function(){
+		return $http.get("https://voliveafrica.com/webservice/get_all_user.php").then(function(posRes){
+			deffered_three.resolve(posRes);
+			return deffered_three.promise;
+		},
+		function(errRes){
+			deffered_three.reject(errRes);
+			return deffered_three.promise;
+		});
+	};
+});
+app.controller("integrationController",function($scope,integrationService,$q){
+	$q.all([integrationService.getjavaData(),
+		integrationService.getDotnetData(),
+		integrationService.getphopData()]).then(function(res){
+			$scope.result_one=res[0];
+			$scope.result_two=res[1];
+			$scope.result_three=res[2];
+		});
+});
+</script>
+</html>

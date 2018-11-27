@@ -7,12 +7,12 @@
 <script>
     var app =angular.module("app",[]);
 
- /*    app.value("my_service","First Value");
-    app.value("my_service","Second Value"); */
+    app.value("my_service","First Value");
+    app.value("my_service","Second Value"); 
     
-    app.constant("my_service","First Value");
+   /*  app.constant("my_service","First Value");
     app.constant("my_service","Second Value");
-    
+     */
     app.controller("ctrl_one",function ($scope,my_service) {
         $scope.var_one=my_service;
     });

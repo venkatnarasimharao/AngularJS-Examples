@@ -1,0 +1,18 @@
+app.config(function($stateProvider,$urlRouterProvider){
+	$stateProvider.state("page_one",{
+		url:"/page_one",
+		views:{
+		'':{templateUrl:"template/page_one.html",controller:"page_one"},
+		'calc@page_one':{templateUrl:"template/calc.html",controller:"calc"},
+		'graph@page_one':{templateUrl:"template/graph.html",controller:"graph"},
+		'chart@page_one':{templateUrl:"template/chart.html",controller:"chart"},
+		'summary@page_one':{templateUrl:"template/summary.html",controller:"summary"}
+		}
+	})
+	.state("page_two",{
+		url:"/page_two",
+		templateUrl:"template/page_two.html",
+		controller:"page_two"
+	});
+	$urlRouterProvider.otherwise("page_one");
+});

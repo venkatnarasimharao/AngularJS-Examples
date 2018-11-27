@@ -1,0 +1,7 @@
+{
+"name":"CustomerLoginRegister",
+"dependencies":{
+	"angular":"latest",
+	"bootstrap":"latest"
+}
+}
