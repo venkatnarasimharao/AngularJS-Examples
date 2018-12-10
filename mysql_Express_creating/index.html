@@ -1,0 +1,24 @@
+<html ng-app="app">
+<div ng-controller="ctrl" >
+<h1 ng-repeat="y in result">pid: {{y.pid}} <br>  pname {{y.p_name}} pcost {{y.p_cost}} expired date {{y.expired_date}}</h1>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+<script>
+var app=angular.module("app",[]);
+
+app.service("my_service",function($http){
+    this.getproducts=function(){
+          return $http.get("http://localhost:8082/products").then(function(posRes){return posRes.data;},
+          function(errRes){return errRes;});
+    };
+});
+
+app.controller("ctrl",function($scope,my_service){
+    my_service.getproducts().then(function(posres){
+        $scope.result= posres;
+    });
+});
+</script>
+</html>
